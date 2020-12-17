@@ -22,10 +22,12 @@ for row in range(height):
             p2[row, column, 0] = 255
             p2[row, column, 1] = 255
             p2[row, column, 2] = 255
+            
 file2 = open("oslomet_snow.bmp", "wb")
 header.astype("int8").tofile(file2)
 p2.astype("int8").tofile(file2)
 file2.close()
+
 
 p3 = pixels3d.copy()
 for row in range(height):
