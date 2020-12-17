@@ -1,6 +1,6 @@
-
-#Task 1
+# Task 1
 import idx as idx
+
 print("\nWelcome to TASK 1 from Lab 2!\n")
 
 week = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
@@ -12,12 +12,13 @@ choice = ''
 # Start a loop that runs until the user enters the value for 'quit'.
 while choice != 'x' and choice != 'l':
     # Give all the choices in a series of print statements.
-    print("[1] Enter 's' to store program.")
-    print("[2] Enter 'l' to list the program.")
-    print("[3] Enter 'x' to quit.")
+    print('''   [1] Enter 's' to store program.
+                [2] Enter 'l' to list the program.
+                [3] Enter 'x' to quit.''')
 
     # Ask for the user's choice.
     choice = input("\nWhat would you like to do? ")
+    
     # Respond to the user's choice.
     if choice == 's':
         day = input("Which day? ")
@@ -25,9 +26,7 @@ while choice != 'x' and choice != 'l':
         time = int(input("What time? "))
         program = input("What is the program? ")
         meeting_table[idx][time] = program
-
-
-
+        
     elif choice == 'l':
        day = input(f"Which day?: ")
        idx = week.index(day)
@@ -44,14 +43,29 @@ while choice != 'x' and choice != 'l':
 print("That was it for Task 1, bye for now.")
 
 
-'''
-#TASK 2
+
+
+
+# TASK 2
 file = open("python.txt", "rt")
 content = file.readlines()
+
+di = dict()
+
 for i in content:
+    i = i.replace(",", "").replace(".", "").replace("'", "").replace("()", "").replace('"', "").replace("\n", "").replace("(", "").replace(")", "")
     print(i)
 
-a = {"Van":9, "to":14, "has":5, "for": 15, "He":8, "language":9, "of":9, "programming":7, "that":7, "from":4, "worked":5, "he":13, "was":5, "and":16, "is":7, "Dutch":4, "as":6, "his":7, "in":15, "Python":11, "ABC":5, "Rossum":11, "a":18, "In":7, "the":34}
-for i, j in a.items():
-    print (i,j)
-'''
+    wds = i.split()
+    for w in wds:        #(di[w] = di.get(w, 0) + 1)
+        if w in di:
+            di[w] = di[w]+1
+        else:
+            di[w] = 1
+        #print(w,di[w])
+
+
+#print(di)
+for k, v in di.items():
+    if v > 3:
+        print(f"{k}: {v}")
